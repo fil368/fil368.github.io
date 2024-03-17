@@ -1,0 +1,451 @@
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 73
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database 3933B
+    -> create database 3933B;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create database 3933B' at line 2
+mysql> create database 3933b;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use 3933b;
+Database changed
+mysql> create table consumidores(
+    -> id int,
+    -> nome varchar(255),
+    -> email varchar(225),
+    -> password varchar(225)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into consumidores (id, nome, email, password) values
+    -> (1,'Consumidor A', 'exemploA@email.com', 'password')
+    -> (2,'Consumidor B', 'exemploB@email.com', 'password')
+    -> (3,'Consumidor C', 'exemploC@email.com', 'password');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(2,'Consumidor B', 'exemploB@email.com', 'password')
+(3,'Consumidor C', 'exemplo' at line 3
+mysql> insert into consumidores (id, nome, email, password) values
+    -> (1,'Consumidor A', 'exemploA@email.com', 'password'),
+    -> (2,'Consumidor B', 'exemploB@email.com', 'password'),
+    -> (3,'Consumidor C', 'exemploC@email.com', 'password');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> describe consumidores
+    ->
+    -> ;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | YES  |     | NULL    |       |
+| nome     | varchar(255) | YES  |     | NULL    |       |
+| email    | varchar(225) | YES  |     | NULL    |       |
+| password | varchar(225) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from consumidores
+    -> ;
++------+--------------+--------------------+----------+
+| id   | nome         | email              | password |
++------+--------------+--------------------+----------+
+|    1 | Consumidor A | exemploA@email.com | password |
+|    2 | Consumidor B | exemploB@email.com | password |
+|    3 | Consumidor C | exemploC@email.com | password |
++------+--------------+--------------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update consumidores set nome=Consumidor A1 where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'A1 where id=1' at line 1
+mysql> update consumidores set nome=Consumidor_A1 where id=1;
+ERROR 1054 (42S22): Unknown column 'Consumidor_A1' in 'field list'
+mysql> update consumidores set nome=ConsumidorA1 where id=1;
+ERROR 1054 (42S22): Unknown column 'ConsumidorA1' in 'field list'
+mysql> select * from consumidores;
++------+--------------+--------------------+----------+
+| id   | nome         | email              | password |
++------+--------------+--------------------+----------+
+|    1 | Consumidor A | exemploA@email.com | password |
+|    2 | Consumidor B | exemploB@email.com | password |
+|    3 | Consumidor C | exemploC@email.com | password |
++------+--------------+--------------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> update consumidores set nome='Consumidor A1' where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from consumidores;
++------+---------------+--------------------+----------+
+| id   | nome          | email              | password |
++------+---------------+--------------------+----------+
+|    1 | Consumidor A1 | exemploA@email.com | password |
+|    2 | Consumidor B  | exemploB@email.com | password |
+|    3 | Consumidor C  | exemploC@email.com | password |
++------+---------------+--------------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from consumidores where id=3;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from consumidores;
++------+---------------+--------------------+----------+
+| id   | nome          | email              | password |
++------+---------------+--------------------+----------+
+|    1 | Consumidor A1 | exemploA@email.com | password |
+|    2 | Consumidor B  | exemploB@email.com | password |
++------+---------------+--------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> create table produtos (
+    -> id int,
+    -> nome varchar(255),
+    -> preço decimal(10,2,
+    -> quantidade_em_stock int,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+quantidade_em_stock int,
+)' at line 4
+mysql> create table produtos (
+    -> id int,
+    -> nome varchar(255),
+    -> preço decimal(10,2),
+    -> quantidade_em_stock int,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> create table produtos (
+    -> id int,
+    -> nome varchar(255),
+    -> preço decimal(10,2),
+    -> quantidade_em_stock int
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into produtos (id, nome, preço, quantidade_em_stock) values
+    -> (1, 'maça', 1.99, 10),
+    -> (2, 'laranja', 0.99, 20),
+    -> (3, 'banana', 0.59, 30);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from produtos
+    -> ;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    1 | maça    |  1.99 |                  10 |
+|    2 | laranja |  0.99 |                  20 |
+|    3 | banana  |  0.59 |                  30 |
++------+---------+-------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> update produtos set preço=2.99 where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from produtos
+    -> ;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    1 | maça    |  2.99 |                  10 |
+|    2 | laranja |  0.99 |                  20 |
+|    3 | banana  |  0.59 |                  30 |
++------+---------+-------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> delete from produtos where id=3;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from produtos;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    1 | maça    |  2.99 |                  10 |
+|    2 | laranja |  0.99 |                  20 |
++------+---------+-------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from produtos where preço<2.00 ;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    2 | laranja |  0.99 |                  20 |
++------+---------+-------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from produtos where nome='maça' ;
++------+------+-------+---------------------+
+| id   | nome | preço | quantidade_em_stock |
++------+------+-------+---------------------+
+|    1 | maça |  2.99 |                  10 |
++------+------+-------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from produtos where quantidade_em_stock<30 ;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    1 | maça    |  2.99 |                  10 |
+|    2 | laranja |  0.99 |                  20 |
++------+---------+-------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table encomendas (
+    -> id int,
+    -> nfornecedores int,
+    -> data datetime,
+    -> total decimal(10,2)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into encomendas (id, nfornecedores, data, total) values
+    -> (1, 101, '2023-07-23 12:00:00', 10.00)
+    -> (2, 102, '2023-07-23 13:00:00', 20.00)
+    -> (3, 103, '2023-07-23 14:00:00', 30.00)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(2, 102, '2023-07-23 13:00:00', 20.00)
+(3, 103, '2023-07-23 14:00:00', 30.00)' at line 3
+mysql> insert into encomendas (id, nfornecedores, data, total) values
+    -> (1, 101, '2023-07-23 12:00:00', 10.00),
+    -> (2, 102, '2023-07-23 13:00:00', 20.00),
+    -> (3, 103, '2023-07-23 14:00:00', 30.00);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from encomendas
+    -> ;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 10.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
+|    3 |           103 | 2023-07-23 14:00:00 | 30.00 |
++------+---------------+---------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update encomendas set total=20.00 where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from encomendas
+    -> ;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
+|    3 |           103 | 2023-07-23 14:00:00 | 30.00 |
++------+---------------+---------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from encomendas where id=3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from encomendas
+    -> ;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
++------+---------------+---------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from encomendas where id=1;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
++------+---------------+---------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from encomendas where data=2023-07-23;
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from encomendas where data='2023-07-23';
+Empty set (0.01 sec)
+
+mysql> select * from encomendas where data='%2023-07-23';
+ERROR 1525 (HY000): Incorrect DATETIME value: '%2023-07-23'
+mysql> select * from encomendas where data='2023-07-23';
+Empty set (0.00 sec)
+
+mysql> select * from encomendas where total>10.00;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
++------+---------------+---------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from encomendas ;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
++------+---------------+---------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from encomendas
+    -> order by column_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by column_name' at line 2
+mysql> show columns from encomendas
+    -> order by nfornecedores;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by nfornecedores' at line 2
+mysql> order by name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by name' at line 1
+mysql> select * from encomendas order by name;
+ERROR 1054 (42S22): Unknown column 'name' in 'order clause'
+mysql> SELECT data FROM encomendas WHERE data=2023-07-23;
+ERROR 2013 (HY000): Lost connection to MySQL server during query
+No connection. Trying to reconnect...
+Connection id:    95
+Current database: 3933b
+
+Empty set, 1 warning (0.14 sec)
+
+mysql>  SELECT data FROM encomendas WHERE data=2023-07-23;
+Empty set, 1 warning (0.00 sec)
+
+mysql> SELECT data FROM encomendas WHERE data BETWEEN 2023-07-23 AND 2023-07-23;
+Empty set, 3 warnings (0.00 sec)
+
+mysql> select *  from encomendas where total > 10.00;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
++------+---------------+---------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select *  from encomendas;
++------+---------------+---------------------+-------+
+| id   | nfornecedores | data                | total |
++------+---------------+---------------------+-------+
+|    1 |           101 | 2023-07-23 12:00:00 | 20.00 |
+|    2 |           102 | 2023-07-23 13:00:00 | 20.00 |
++------+---------------+---------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from produtos;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    1 | maça    |  2.99 |                  10 |
+|    2 | laranja |  0.99 |                  20 |
++------+---------+-------+---------------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from produtos
+    -> order by nome;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    2 | laranja |  0.99 |                  20 |
+|    1 | maça    |  2.99 |                  10 |
++------+---------+-------+---------------------+
+2 rows in set (0.01 sec)
+
+mysql> select count (quantidade_em_stock) from produtos;
+ERROR 1630 (42000): FUNCTION 3933b.count does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select count (quantidade_em_stock)
+    -> from produtos;
+ERROR 1630 (42000): FUNCTION 3933b.count does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select count(quantidade_em_stock)
+    -> from produtos;
++----------------------------+
+| count(quantidade_em_stock) |
++----------------------------+
+|                          2 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(preço)
+    -> from produtos;
++------------+
+| avg(preço) |
++------------+
+|   1.990000 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(quantidade_em_stock)
+    -> from produtos;
++--------------------------+
+| sum(quantidade_em_stock) |
++--------------------------+
+|                       30 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from produtos
+    -> where nome='laranja' and preço;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    2 | laranja |  0.99 |                  20 |
++------+---------+-------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table consumidores
+    -> add primary key (id);
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from consumidores
+    -> ;
++----+---------------+--------------------+----------+
+| id | nome          | email              | password |
++----+---------------+--------------------+----------+
+|  1 | Consumidor A1 | exemploA@email.com | password |
+|  2 | Consumidor B  | exemploB@email.com | password |
++----+---------------+--------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select total
+    -> from encomendas
+    -> inner join produtos
+    -> on encomendas.total= produtos.quantidade_em_stock;
++-------+
+| total |
++-------+
+| 20.00 |
+| 20.00 |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select encomendas.id, consumidores.nome, encomendas.data from encomendas inner join consumidores on encomendas.id=consumidores.id;
++------+---------------+---------------------+
+| id   | nome          | data                |
++------+---------------+---------------------+
+|    1 | Consumidor A1 | 2023-07-23 12:00:00 |
+|    2 | Consumidor B  | 2023-07-23 13:00:00 |
++------+---------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select data from encomendas where data between 2023-07-23 and 2023-07-23;
+Empty set, 3 warnings (0.00 sec)
+
+mysql> select * from produtos where preço between 0.01 and 3.00;
++------+---------+-------+---------------------+
+| id   | nome    | preço | quantidade_em_stock |
++------+---------+-------+---------------------+
+|    1 | maça    |  2.99 |                  10 |
+|    2 | laranja |  0.99 |                  20 |
++------+---------+-------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql>

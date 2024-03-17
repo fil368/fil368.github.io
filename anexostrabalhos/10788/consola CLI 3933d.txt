@@ -1,0 +1,163 @@
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 574
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> user 3933d;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user 3933d' at line 1
+mysql> use 3933d;
+Database changed
+mysql> select * from carros;
++----+--------------+------------+---------+---------+-------------------+--------+-------------+------------+---------+---------+--------------------------+---------------------+
+| ID | Marca        | Modelo     | NrSerie | Lugares | Data_de_Matricula | Km     | Combustivel | Cilindrada | Cavalos | Preço   | Observacoes              | Registo             |
++----+--------------+------------+---------+---------+-------------------+--------+-------------+------------+---------+---------+--------------------------+---------------------+
+|  1 | Opel         | Astra      |    4658 |       5 | 2022-04-12        | 100000 | Gasolina    |       1500 |     140 |  25.000 | A precisar de revisao    | 2023-06-07 15:07:00 |
+|  2 | BMW          | Serie 5    |    5623 |       5 | 2021-03-12        | 230000 | Gasoleo     |       2500 |     200 |  65.000 | Precisa de limpeza geral | 2023-07-07 12:55:00 |
+|  3 | Mercedes     | C          |    5689 |       5 | 2020-06-10        | 210000 | Gasoleo     |        300 |     220 |  55.000 | Carro pronto para venda  | 2023-05-12 13:45:00 |
+|  4 | Porsche      | Carrera 4s |    5698 |       4 | 2022-10-06        |  50000 | Gasolina    |       2500 |     270 |  80.000 | Precisa de pastilhas     | 2023-04-23 11:35:00 |
+|  5 | Aston Martin | DBS 770    |    8555 |       3 | 2023-05-22        |  10000 | Gasolina    |        300 |     350 | 225.000 | Precisa de escovas       | 2023-03-07 10:55:00 |
++----+--------------+------------+---------+---------+-------------------+--------+-------------+------------+---------+---------+--------------------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from clientes;
++-----------+----------------+--------+-----------+---------------+--------------+
+| ClienteID | Nome           | Genero | Telefone  | Morada        | Cod_Distrito |
++-----------+----------------+--------+-----------+---------------+--------------+
+|         1 | Adriano Silva  | M      | 916235487 | Rua do Polvo  |           18 |
+|         2 | Joao Aguiar    | M      | 965421452 | Rua das Rosas |            3 |
+|         3 | Jessica Afonso | F      | 965487855 | Rua da Paz    |            5 |
+|         4 | Rita Lopes     | F      | 935487854 | Praça da Luz  |           10 |
+|         5 | Pedro Lopes    | M      | 925458784 | Praça Azul    |           13 |
++-----------+----------------+--------+-----------+---------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from motas;
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+| ID | Marca  | Modelo   | NrSerie | Data_de_Matricula | Km    | Combustivel | Cilindrada | Cavalos | Preço  | Observacoes                | Registo             |
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+|  1 | BMW    | S1000 RR |    5555 | 2023-06-02        |  3000 | Gasolina    |       1000 |     140 | 45.000 | Precisa de limpeza         | 2023-02-17 09:55:00 |
+|  2 | BMW    | GS 1200  |    5454 | 2021-03-12        | 12000 | Gasolina    |       1200 |     120 | 25.000 | Precisa de oleo de travoes | 2023-06-17 20:55:00 |
+|  3 | Yamaha | Nmax     |    1001 | 2022-06-10        | 30000 | Gasolina    |        125 |      25 |  4.000 | Precisa de pastilhas       | 2023-01-01 12:55:00 |
+|  4 | Yamaha | Xmax     |    1211 | 2022-11-23        |  4200 | Gasolina    |        300 |      40 |  6.000 | Precisa de gasolina        | 2023-01-07 08:55:00 |
+|  5 | Honda  | Cbr 750  |    1221 | 2023-08-12        |  6000 | Gasolina    |        750 |     100 | 15.000 | Precisa de pintura         | 2023-01-06 12:35:00 |
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from vendascarros;
++---------+--------------+-------------+----------------+------------+
+| VendaID | Carro        | InfoCliente | ClienteNome    | PreçoVenda |
++---------+--------------+-------------+----------------+------------+
+|       1 | Astra        |           1 | Adriano Silva  |     22.500 |
+|       2 | Mercedes     |           2 | Joao Aguiar    |     50.000 |
+|       3 | Aston Martin |           3 | Jessica Afonso |    210.000 |
++---------+--------------+-------------+----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from carros where lugares = 5;
++----+----------+---------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+| ID | Marca    | Modelo  | NrSerie | Lugares | Data_de_Matricula | Km     | Combustivel | Cilindrada | Cavalos | Preço  | Observacoes              | Registo             |
++----+----------+---------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+|  1 | Opel     | Astra   |    4658 |       5 | 2022-04-12        | 100000 | Gasolina    |       1500 |     140 | 25.000 | A precisar de revisao    | 2023-06-07 15:07:00 |
+|  2 | BMW      | Serie 5 |    5623 |       5 | 2021-03-12        | 230000 | Gasoleo     |       2500 |     200 | 65.000 | Precisa de limpeza geral | 2023-07-07 12:55:00 |
+|  3 | Mercedes | C       |    5689 |       5 | 2020-06-10        | 210000 | Gasoleo     |        300 |     220 | 55.000 | Carro pronto para venda  | 2023-05-12 13:45:00 |
++----+----------+---------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from carros where Combustivel = Gasolina;
+ERROR 1054 (42S22): Unknown column 'Gasolina' in 'where clause'
+mysql> select * from carros where combustivel = Gasolina;
+ERROR 1054 (42S22): Unknown column 'Gasolina' in 'where clause'
+mysql> select * from carros where combustivel ='Gasolina';
++----+--------------+------------+---------+---------+-------------------+--------+-------------+------------+---------+---------+-----------------------+---------------------+
+| ID | Marca        | Modelo     | NrSerie | Lugares | Data_de_Matricula | Km     | Combustivel | Cilindrada | Cavalos | Preço   | Observacoes           | Registo             |
++----+--------------+------------+---------+---------+-------------------+--------+-------------+------------+---------+---------+-----------------------+---------------------+
+|  1 | Opel         | Astra      |    4658 |       5 | 2022-04-12        | 100000 | Gasolina    |       1500 |     140 |  25.000 | A precisar de revisao | 2023-06-07 15:07:00 |
+|  4 | Porsche      | Carrera 4s |    5698 |       4 | 2022-10-06        |  50000 | Gasolina    |       2500 |     270 |  80.000 | Precisa de pastilhas  | 2023-04-23 11:35:00 |
+|  5 | Aston Martin | DBS 770    |    8555 |       3 | 2023-05-22        |  10000 | Gasolina    |        300 |     350 | 225.000 | Precisa de escovas    | 2023-03-07 10:55:00 |
++----+--------------+------------+---------+---------+-------------------+--------+-------------+------------+---------+---------+-----------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from motas order by marca asc;
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+| ID | Marca  | Modelo   | NrSerie | Data_de_Matricula | Km    | Combustivel | Cilindrada | Cavalos | Preço  | Observacoes                | Registo             |
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+|  1 | BMW    | S1000 RR |    5555 | 2023-06-02        |  3000 | Gasolina    |       1000 |     140 | 45.000 | Precisa de limpeza         | 2023-02-17 09:55:00 |
+|  2 | BMW    | GS 1200  |    5454 | 2021-03-12        | 12000 | Gasolina    |       1200 |     120 | 25.000 | Precisa de oleo de travoes | 2023-06-17 20:55:00 |
+|  5 | Honda  | Cbr 750  |    1221 | 2023-08-12        |  6000 | Gasolina    |        750 |     100 | 15.000 | Precisa de pintura         | 2023-01-06 12:35:00 |
+|  3 | Yamaha | Nmax     |    1001 | 2022-06-10        | 30000 | Gasolina    |        125 |      25 |  4.000 | Precisa de pastilhas       | 2023-01-01 12:55:00 |
+|  4 | Yamaha | Xmax     |    1211 | 2022-11-23        |  4200 | Gasolina    |        300 |      40 |  6.000 | Precisa de gasolina        | 2023-01-07 08:55:00 |
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from motas order by modelo asc;
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+| ID | Marca  | Modelo   | NrSerie | Data_de_Matricula | Km    | Combustivel | Cilindrada | Cavalos | Preço  | Observacoes                | Registo             |
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+|  5 | Honda  | Cbr 750  |    1221 | 2023-08-12        |  6000 | Gasolina    |        750 |     100 | 15.000 | Precisa de pintura         | 2023-01-06 12:35:00 |
+|  2 | BMW    | GS 1200  |    5454 | 2021-03-12        | 12000 | Gasolina    |       1200 |     120 | 25.000 | Precisa de oleo de travoes | 2023-06-17 20:55:00 |
+|  3 | Yamaha | Nmax     |    1001 | 2022-06-10        | 30000 | Gasolina    |        125 |      25 |  4.000 | Precisa de pastilhas       | 2023-01-01 12:55:00 |
+|  1 | BMW    | S1000 RR |    5555 | 2023-06-02        |  3000 | Gasolina    |       1000 |     140 | 45.000 | Precisa de limpeza         | 2023-02-17 09:55:00 |
+|  4 | Yamaha | Xmax     |    1211 | 2022-11-23        |  4200 | Gasolina    |        300 |      40 |  6.000 | Precisa de gasolina        | 2023-01-07 08:55:00 |
++----+--------+----------+---------+-------------------+-------+-------------+------------+---------+--------+----------------------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from carros where preco > 70.000;
+ERROR 1054 (42S22): Unknown column 'preco' in 'where clause'
+mysql> select * from carros where preço > 70.000;
++----+--------------+------------+---------+---------+-------------------+-------+-------------+------------+---------+---------+----------------------+---------------------+
+| ID | Marca        | Modelo     | NrSerie | Lugares | Data_de_Matricula | Km    | Combustivel | Cilindrada | Cavalos | Preço   | Observacoes          | Registo             |
++----+--------------+------------+---------+---------+-------------------+-------+-------------+------------+---------+---------+----------------------+---------------------+
+|  4 | Porsche      | Carrera 4s |    5698 |       4 | 2022-10-06        | 50000 | Gasolina    |       2500 |     270 |  80.000 | Precisa de pastilhas | 2023-04-23 11:35:00 |
+|  5 | Aston Martin | DBS 770    |    8555 |       3 | 2023-05-22        | 10000 | Gasolina    |        300 |     350 | 225.000 | Precisa de escovas   | 2023-03-07 10:55:00 |
++----+--------------+------------+---------+---------+-------------------+-------+-------------+------------+---------+---------+----------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from motas where marca like '%Y%';
++----+--------+--------+---------+-------------------+-------+-------------+------------+---------+-------+----------------------+---------------------+
+| ID | Marca  | Modelo | NrSerie | Data_de_Matricula | Km    | Combustivel | Cilindrada | Cavalos | Preço | Observacoes          | Registo             |
++----+--------+--------+---------+-------------------+-------+-------------+------------+---------+-------+----------------------+---------------------+
+|  3 | Yamaha | Nmax   |    1001 | 2022-06-10        | 30000 | Gasolina    |        125 |      25 | 4.000 | Precisa de pastilhas | 2023-01-01 12:55:00 |
+|  4 | Yamaha | Xmax   |    1211 | 2022-11-23        |  4200 | Gasolina    |        300 |      40 | 6.000 | Precisa de gasolina  | 2023-01-07 08:55:00 |
++----+--------+--------+---------+-------------------+-------+-------------+------------+---------+-------+----------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from carros where data_de_matricula between '2021-03-01' and '2022-11-01';
++----+---------+------------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+| ID | Marca   | Modelo     | NrSerie | Lugares | Data_de_Matricula | Km     | Combustivel | Cilindrada | Cavalos | Preço  | Observacoes              | Registo             |
++----+---------+------------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+|  1 | Opel    | Astra      |    4658 |       5 | 2022-04-12        | 100000 | Gasolina    |       1500 |     140 | 25.000 | A precisar de revisao    | 2023-06-07 15:07:00 |
+|  2 | BMW     | Serie 5    |    5623 |       5 | 2021-03-12        | 230000 | Gasoleo     |       2500 |     200 | 65.000 | Precisa de limpeza geral | 2023-07-07 12:55:00 |
+|  4 | Porsche | Carrera 4s |    5698 |       4 | 2022-10-06        |  50000 | Gasolina    |       2500 |     270 | 80.000 | Precisa de pastilhas     | 2023-04-23 11:35:00 |
++----+---------+------------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>  select * from motas where combustivel = 'gasolina' and valor < 10.000;
+ERROR 1054 (42S22): Unknown column 'valor' in 'where clause'
+mysql>  select * from motas where combustivel = 'gasolina' and preço < 10.000;
++----+--------+--------+---------+-------------------+-------+-------------+------------+---------+-------+----------------------+---------------------+
+| ID | Marca  | Modelo | NrSerie | Data_de_Matricula | Km    | Combustivel | Cilindrada | Cavalos | Preço | Observacoes          | Registo             |
++----+--------+--------+---------+-------------------+-------+-------------+------------+---------+-------+----------------------+---------------------+
+|  3 | Yamaha | Nmax   |    1001 | 2022-06-10        | 30000 | Gasolina    |        125 |      25 | 4.000 | Precisa de pastilhas | 2023-01-01 12:55:00 |
+|  4 | Yamaha | Xmax   |    1211 | 2022-11-23        |  4200 | Gasolina    |        300 |      40 | 6.000 | Precisa de gasolina  | 2023-01-07 08:55:00 |
++----+--------+--------+---------+-------------------+-------+-------------+------------+---------+-------+----------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from carros where preço between 50.000 and 100.000;
++----+----------+------------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+| ID | Marca    | Modelo     | NrSerie | Lugares | Data_de_Matricula | Km     | Combustivel | Cilindrada | Cavalos | Preço  | Observacoes              | Registo             |
++----+----------+------------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+|  2 | BMW      | Serie 5    |    5623 |       5 | 2021-03-12        | 230000 | Gasoleo     |       2500 |     200 | 65.000 | Precisa de limpeza geral | 2023-07-07 12:55:00 |
+|  3 | Mercedes | C          |    5689 |       5 | 2020-06-10        | 210000 | Gasoleo     |        300 |     220 | 55.000 | Carro pronto para venda  | 2023-05-12 13:45:00 |
+|  4 | Porsche  | Carrera 4s |    5698 |       4 | 2022-10-06        |  50000 | Gasolina    |       2500 |     270 | 80.000 | Precisa de pastilhas     | 2023-04-23 11:35:00 |
++----+----------+------------+---------+---------+-------------------+--------+-------------+------------+---------+--------+--------------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>
